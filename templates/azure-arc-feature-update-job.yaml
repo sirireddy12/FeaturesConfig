@@ -18,6 +18,6 @@ spec:
       - name: updateagent
         image: "sikasireacr1.azurecr.io/featureimage:1.0"
         command: ["/bin/bash", "/update.sh"]
-        args: ["mcr.microsoft.com/azurearck8s/batch1/stable/azure-arc-k8sagents:1.6.16", "azure-arc", "azure-arc-k8sagents", "default", "Update", "{{ .Values.features.clusterConnect.enabled }}", "{{ .Values.features.customLocations.enabled }}", "{{ .Values.features.azureRbac.enabled }}", "{{ .Values.features.azureRbac.appId }}", "{{ .Values.features.azureRbac.appSecret }}", "{{ .Values.features.customLocations.settings.customLocationsRPOID}}"]        
+        args: ["mcr.microsoft.com/azurearck8s/batch1/stable/azure-arc-k8sagents:1.6.16", "azure-arc", "azure-arc-k8sagents", "default", "Update", "{{ .Values.features.clusterConnect.enabled }}", "{{ .Values.features.customLocations.enabled }}", "{{ .Values.features.azureRbac.enabled }}", "{{ .Values.features.azureRbac.appId }}", "{{ .Values.features.azureRbac.appSecret }}", "{{ .Values.features.customLocations.customLocationsRPOID}}"]        
         imagePullPolicy: Always
       restartPolicy: Never

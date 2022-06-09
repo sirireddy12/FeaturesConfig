@@ -1,16 +1,12 @@
 # This is a YAML-formatted file
 
-image:
-  repository: azurearcfork8s.azurecr.io
-  releaseName: arc-preview
-  imagePullPolicy: IfNotPresent
-
 features:
   autoUpdate: false
   clusterConnect:
     enabled: true
   customLocations:
     enabled: false
+    customLocationsRPOID: ""
   azureRbac:
     enabled: false
     appId: ""
