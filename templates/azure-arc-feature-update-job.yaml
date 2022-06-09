@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: updatearcagentjob2
+  namespace: azure-arc
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1200
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      serviceAccount: azure-arc-operatorsa
+      serviceAccountName: azure-arc-operatorsa
+      nodeSelector:
+        kubernetes.io/arch: amd64
+        kubernetes.io/os: linux
+      containers:
+      - name: updateagent
+        image: "sikasireacr1.azurecr.io/featureimage:1.0"
+        command: ["/bin/bash", "/update.sh"]
+        args: ["mcr.microsoft.com/azurearck8s/batch1/stable/azure-arc-k8sagents:1.6.16", "azure-arc", "azure-arc-k8sagents", "default", "Update", "{{ .Values.features.clusterConnect.enabled }}", "{{ .Values.features.customLocations.enabled }}", "{{ .Values.features.azureRbac.enabled }}", "{{ .Values.features.azureRbac.appId }}", "{{ .Values.features.azureRbac.appSecret }}", "{{ .Values.features.customLocations.settings.customLocationsRPOID}}"]        
+        imagePullPolicy: Always
+      restartPolicy: Never
